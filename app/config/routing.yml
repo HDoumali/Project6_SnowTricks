@@ -1,3 +1,7 @@
+st_user:
+    resource: "@STUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 st_app:
     resource: "@STAppBundle/Resources/config/routing.yml"
     prefix:   /
