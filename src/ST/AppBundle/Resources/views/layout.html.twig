@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Snowtricks{% endblock %}</title>
+    <!--pour le css perso, pour charger les fichier du repertoire css, nous pouvons utiliser le joker '*' => bundles/ocplatform/css/* -->
+    {% block stylesheets %}
+      {# On charge le CSS de bootstrap depuis le site directement #}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
+    {% endblock %}
+    
+  </head>
+
+  <body>
+      <nav class="navbar navbar-default">
+          <div class="container">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="{{ path('st_app_home') }}">Accueil</a>
+                  </li>
+                  <li>
+                      <a href="#">Tricks</a>
+                  </li>
+                  <li>
+                      <a href="#">Connexion</a>
+                  </li>
+                  <li>
+                      <a href="#">Inscription</a>
+                  </li>
+              </ul> 
+          </div>
+      </nav>
+
+      {% block body %}
+      {% endblock %}
+
+    <footer>
+      <p>Copyright © {{ 'now'|date('Y') }}</p>
+    </footer>
+  
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('js/picture_add_form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/video_add_form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/picture_edit_form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/video_edit_form.js') }}"></script>
+  {% endblock %}
+
+  </body>
+</html>

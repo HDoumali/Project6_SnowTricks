@@ -1,0 +1,34 @@
+st_app_home:
+    path:      /{page}
+    defaults:
+        _controller: STAppBundle:Trick:index
+        page:        1
+    requirements:
+        page: \d*
+
+st_app_view:
+    path:      /trick/{slug}
+    defaults:
+        _controller: STAppBundle:Trick:view
+
+st_app_add:
+    path:      /add
+    defaults:
+        _controller: STAppBundle:Trick:add
+
+st_app_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: STAppBundle:Trick:edit
+    requirements:
+        id: \d+
+
+st_app_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: STAppBundle:Trick:delete
+    requirements:
+        id: \d+
+        
+
+
