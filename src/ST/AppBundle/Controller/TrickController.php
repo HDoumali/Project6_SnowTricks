@@ -61,7 +61,9 @@ class TrickController extends Controller
        'form' => $form->createView(),
     ));
   }
-    
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     */
     public function addAction(Request $request)
   { 
     $trick = new Trick();
