@@ -17,7 +17,7 @@
         </div>
     </div>
    
-   {% if is_granted('ROLE_ADMIN') %}
+   {% if is_granted('ROLE_USER') %}
    		<a href="{{ path('st_app_add') }}"><h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ajouter une figure</h4></a>
    {% endif %}
 

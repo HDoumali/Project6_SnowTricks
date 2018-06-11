@@ -40,12 +40,17 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ST\UserBundle\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+    
     public function __construct()
     {
         $this->date = new \DateTime();
     }
-
 
     /**
      * Get id
@@ -127,5 +132,29 @@ class Comment
     public function getTrick()
     {
         return $this->trick;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ST\UserBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\ST\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ST\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

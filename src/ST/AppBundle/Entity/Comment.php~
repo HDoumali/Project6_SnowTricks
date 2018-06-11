@@ -36,11 +36,21 @@ class Comment
     private $content;
     
     /**
-    * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick")
-    * @ORM\JoinColumn(nullable=false)
-    */
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $trick;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ST\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+    
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id
@@ -59,7 +69,7 @@ class Comment
      *
      * @return Comment
      */
-    public function setDate($date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
@@ -99,5 +109,28 @@ class Comment
     {
         return $this->content;
     }
-}
 
+    /**
+     * Set trick
+     *
+     * @param \ST\AppBundle\Entity\Trick $trick
+     *
+     * @return Comment
+     */
+    public function setTrick(\ST\AppBundle\Entity\Trick $trick)
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Get trick
+     *
+     * @return \ST\AppBundle\Entity\Trick
+     */
+    public function getTrick()
+    {
+        return $this->trick;
+    }
+}

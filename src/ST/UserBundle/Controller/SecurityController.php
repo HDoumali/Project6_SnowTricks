@@ -3,6 +3,7 @@
 namespace ST\UserBundle\Controller;
 
 use ST\UserBundle\Entity\User;
+use ST\UserBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,5 +32,20 @@ class SecurityController extends Controller
     $user = new User();
 
     $form = $this->createForm(UserType::class, $user);
+
+    if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($user);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('message', 'Votre compte a bien été enregistré, vous pouvez désormais vous connecter.');
+
+      return $this->redirectToRoute('st_app_home');
+    }
+
+    return $this->render('STUserBundle:Security:register.html.twig', array(
+        'form' => $form->createView(),
+    ));
   }
 }

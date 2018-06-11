@@ -2,6 +2,7 @@
 
 namespace ST\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -62,20 +63,24 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="salt", type="string", length=255)
-     */
-    private $salt;
-
-    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
      */
-    private $roles = array();
+    private $roles = array('ROLE_USER');
 
-
+    /**
+    * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Picture", cascade={"persist", "remove"})
+    * @ORM\JoinColumn(nullable=true)
+    * @Assert\Valid()
+    */
+    private $picture;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Comment", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $comments;
+    
     /**
      * Get id
      *
@@ -205,7 +210,7 @@ class User implements UserInterface
     {
         return $this->password;
     }
-
+    
     /**
      * Set salt
      *
@@ -213,6 +218,7 @@ class User implements UserInterface
      *
      * @return User
      */
+    
     public function setSalt($salt)
     {
         $this->salt = $salt;
@@ -227,9 +233,9 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        return $this->salt;
+        return null;
     }
-
+    
     /**
      * Set roles
      *
@@ -257,5 +263,28 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
-}
+    
+    /**
+     * Set picture
+     *
+     * @param \ST\AppBundle\Entity\Picture $picture
+     *
+     * @return User
+     */
+    public function setPicture(\ST\AppBundle\Entity\Picture $picture = null)
+    {
+        $this->picture = $picture;
 
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \ST\AppBundle\Entity\Picture
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+}
