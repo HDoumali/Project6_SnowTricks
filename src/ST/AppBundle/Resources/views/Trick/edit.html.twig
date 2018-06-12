@@ -9,6 +9,7 @@
 	<h3>Vous souhaitez modifier la figure "{{ trick.name }}"</h3>
 
 	{{ include("STAppBundle:Trick:form.html.twig") }}
+	<a href="{{ path('st_app_delete', {'id': trick.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
 
 	<p>la modification sera visible directement après validation du formulaire</p>
 	
