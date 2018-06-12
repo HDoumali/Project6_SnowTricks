@@ -48,4 +48,10 @@ class SecurityController extends Controller
         'form' => $form->createView(),
     ));
   }
+
+  public function profileAction()
+  {
+    return $this->render('STUserBundle:Security:profile.html.twig');
+
+  }
 }

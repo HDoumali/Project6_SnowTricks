@@ -1,0 +1,13 @@
+{% extends "STAppBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Bienvenue sur votre profil "{{ app.user.username }}"</h2>
+  
+  <p>Votre nom d'utilisateur : {{ app.user.username }}</p>
+  <p>Votre prénom : {{ app.user.firstname }}</p>
+  <p>Votre nom de famille : {{ app.user.lastname }}</p>
+  <p>Votre adresse email : {{ app.user.email }}</p>
+  <p>Votre image de profil : <img src="{{ asset(app.user.picture.webPath) }}" alt="{{ app.user.picture.alt }}" style="width: 10%" ></p>
+
+{% endblock %}

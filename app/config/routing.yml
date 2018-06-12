@@ -17,3 +17,8 @@ register:
     path: /register
     defaults:
         _controller: STUserBundle:Security:register
+
+profile:
+    path: /profile
+    defaults:
+        _controller: STUserBundle:Security:profile

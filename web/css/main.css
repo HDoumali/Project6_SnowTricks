@@ -72,3 +72,8 @@ footer .fa
 {
 	font-size : 30px;
 }
+
+.img_presentation_trick img
+{
+	width: 100%!important;
+}
