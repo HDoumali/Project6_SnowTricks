@@ -35,10 +35,11 @@
 	padding: 0px!important;
 }
 
-.thumbnail img
+.thumbnail.index img
 {
-	height: 100px;
+	height: 150px;
 	width: 100%;
+	
 }
 
 .thumbnail a
@@ -75,5 +76,37 @@ footer .fa
 
 .img_presentation_trick img
 {
-	width: 100%!important;
+  width: 100%;
+}
+
+.img_presentation_trick .setting_trick
+{
+	position: absolute;
+	right: 15px;
+	background-color: #ecfafb;
+	border-radius: 2px;
+}
+
+.img_presentation_trick .setting_trick a
+{
+	color: #4aa6b5;
+}
+
+.img_presentation_trick .setting_trick a:hover
+{
+	color: #81cbc8;
+}
+
+.content_comment
+{
+	background-color: lightgrey;
+	border-radius: 30px;
+	padding-left: 10px;
+	margin: 30px 10px;
+}
+
+.form_comment .well
+{
+	background-color: #ecfafb;
+	border: 1px solid #ecfafb;
 }

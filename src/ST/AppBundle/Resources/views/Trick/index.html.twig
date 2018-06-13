@@ -34,13 +34,13 @@
 		<div class="row">
 			{% for trick in listTricks%}
 			<div class="col-md-2 col-sm-3">
-				<div class="thumbnail">
+				<div class="thumbnail index">
 					{% for picture in trick.pictures %}
 							{% if loop.first %}
-		                    	<img src="{{ asset(picture.webPath) }}" alt="{{ picture.alt }}">
+		                    	<img src="{{ asset(picture.webPath) }}" class="img-responsive" alt="{{ picture.alt }}">
 		                    {% endif %}
 		                    {% else %}
-		                    	<img src="{{ asset('img/default.jpg') }}" alt="imgdefault">
+		                    	<img src="{{ asset('img/default.jpg') }}" class="img-responsive" alt="imgdefault">
 	                {% endfor %}
 					<div class="caption">
 						<h5><a href="{{ path('st_app_view', {'slug': trick.slug}) }}">{{ trick.name }}</a>
