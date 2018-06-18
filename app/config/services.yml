@@ -7,3 +7,6 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+     ST\UserBundle\Controller\SecurityController:
+        autowire: true # or define your controller constructor and configure its arguments explicitly
+        tags: ['controller.service_arguments']

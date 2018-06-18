@@ -63,6 +63,12 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
@@ -187,6 +193,16 @@ class User implements UserInterface
         return $this->email;
     }
 
+     public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     /**
      * Set password
      *
@@ -219,12 +235,12 @@ class User implements UserInterface
      * @return User
      */
     
-    public function setSalt($salt)
+    /*public function setSalt($salt)
     {
         $this->salt = $salt;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get salt

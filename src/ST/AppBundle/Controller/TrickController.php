@@ -106,20 +106,6 @@ class TrickController extends Controller
     $form = $this->get('form.factory')->create(TrickEditType::class, $trick);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
-       $pictureAttachments = $trick->getPictures();
-            foreach ($pictureAttachments as $pictureAttachment)
-            {
-                $trick->addPicture($pictureAttachment);
-                $pictureAttachment->setTrick($trick);
-            }
-
-       $videoAttachments = $trick->getVideos();
-            foreach ($videoAttachments as $videoAttachment)
-            {
-                $trick->addVideo($videoAttachment);
-                $videoAttachment->setTrick($trick);
-            }
       
       $em->flush();
 
