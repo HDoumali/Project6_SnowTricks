@@ -35,16 +35,36 @@
     </div>
   </div>
 
-  {{ form_row(form.pictures) }}
+  <div class="form-group">
+    {{ form_label(form.pictures, "Image", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(form.pictures) }}
+    <div class="col-sm-10">
+     <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
+    </div>
+    
+  </div>
+  {#{{ form_widget(form.pictures) }}#}
+  
+  <div class="form-group">
+    {{ form_label(form.videos, "Videos", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(form.videos) }}
+    <div class="col-sm-10">
+      <a href="#" id="add_video" class="btn btn-default">Ajouter une vidéo</a>
+    </div>
+  </div>
+  {#{{ form_widget(form.videos) }}#}
+
+  {#{{ form_row(form.pictures) }}
    <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
 
    {{ form_row(form.videos) }}
-   <a href="#" id="add_video" class="btn btn-default">Ajouter une vidéo</a>
+   <a href="#" id="add_video" class="btn btn-default">Ajouter une vidéo</a>#}
 
   {# Génération automatique des champs pas encore écrits.
      Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
      et tous les champs cachés (type « hidden »). #}
   {{ form_rest(form) }}
+  
 
 
   {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}

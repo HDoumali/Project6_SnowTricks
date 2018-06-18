@@ -67,7 +67,7 @@ class TrickController extends Controller
     ));
   }
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request)
   { 
@@ -76,21 +76,7 @@ class TrickController extends Controller
     $form = $this->createForm(TrickType::class, $trick);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
-      $pictureAttachments = $trick->getPictures();
-            foreach ($pictureAttachments as $pictureAttachment)
-            {
-                $trick->addPicture($pictureAttachment);
-                $pictureAttachment->setTrick($trick);
-            }
-
-       $videoAttachments = $trick->getVideos();
-            foreach ($videoAttachments as $videoAttachment)
-            {
-                $trick->addVideo($videoAttachment);
-                $videoAttachment->setTrick($trick);
-            }
-      
+    
       $em = $this->getDoctrine()->getManager();
       $em->persist($trick);
       $em->flush();

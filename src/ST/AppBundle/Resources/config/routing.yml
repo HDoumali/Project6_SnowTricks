@@ -29,6 +29,13 @@ st_app_delete:
         _controller: STAppBundle:Trick:delete
     requirements:
         id: \d+
+
+st_app_edit_picture:
+    path:      /editpicture/{id}
+    defaults:
+        _controller: STAppBundle:Picture:edit
+    requirements:
+        id: \d+
         
 
 

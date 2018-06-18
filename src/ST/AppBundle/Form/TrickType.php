@@ -24,17 +24,18 @@ class TrickType extends AbstractType
         ->add('category', EntityType::class, array(
              'class' => 'STAppBundle:Category',
              'choice_label' => 'name',
-             'multiple' => false,
+             'multiple' => false
         ))
         ->add('pictures', CollectionType::class, array(
               'entry_type' => PictureType::class,
               'allow_add' => true,
-              'allow_delete' => true,
+              'by_reference' => false,
+              'data' => array()
         ))
         ->add('videos', CollectionType::class, array(
               'entry_type' => VideoType::class,
               'allow_add' => true,
-              'allow_delete' => true,
+              'allow_delete' => true
         ))
         ->add('save', SubmitType::class);
     }/**

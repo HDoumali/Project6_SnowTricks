@@ -13,7 +13,7 @@ $(document).ready(function() {
       return false;
     });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    /*On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
     if (index == 0) {
       addPicture($container);
     } else {
@@ -21,7 +21,7 @@ $(document).ready(function() {
       $container.children('div').each(function() {
         addDeleteLink($(this));
       });
-    }
+    }*/
 
     // La fonction qui ajoute un formulaire CategoryType
     function addPicture($container) {

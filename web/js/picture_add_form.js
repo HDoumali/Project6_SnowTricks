@@ -14,15 +14,15 @@ $(document).ready(function() {
     });
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
+    /*if (index == 0) {
       addPicture($container);
     } else {
       // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
       $container.children('div').each(function() {
         addDeleteLink($(this));
       });
-    }
-
+    }*/
+    
     // La fonction qui ajoute un formulaire CategoryType
     function addPicture($container) {
       // Dans le contenu de l'attribut « data-prototype », on remplace :

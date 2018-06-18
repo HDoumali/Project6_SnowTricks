@@ -4,6 +4,12 @@
 	Ajouter une figure - {{ parent() }}
 {% endblock %}
 
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/picture_add_form.js') }}"></script>
+<script src="{{ asset('js/video_add_form.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 
 	<h3>Ajouter une figure</h3>

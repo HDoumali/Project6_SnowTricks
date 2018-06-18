@@ -195,9 +195,10 @@ class Trick
      */
     public function addPicture(\ST\AppBundle\Entity\Picture $picture)
     {
-        $this->pictures[] = $picture;
 
-        //$picture->setTrick($this);
+        $this->pictures->add($picture);
+
+        $picture->setTrick($this);
 
         return $this;
     }
@@ -231,7 +232,7 @@ class Trick
      */
     public function addVideo(\ST\AppBundle\Entity\Video $video)
     {
-        $this->videos[] = $video;
+        $this->videos->add($video);
 
         $video->setTrick($this);
 
