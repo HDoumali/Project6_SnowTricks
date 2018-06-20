@@ -63,6 +63,12 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
@@ -71,6 +77,7 @@ class User implements UserInterface
 
     /**
     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Picture", cascade={"persist", "remove"})
+    * @ORM\JoinColumn(nullable=true)
     * @Assert\Valid()
     */
     private $picture;
@@ -79,14 +86,16 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Comment", mappedBy="user", cascade={"persist", "remove"})
      */
     private $comments;
-
+    
     /**
-     * Constructor
+     * @ORM\Column(name="validationtoken", type="string", nullable=true)
      */
-    public function __construct()
-    {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $validationToken;
+    
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
     
     /**
      * Get id
@@ -194,6 +203,16 @@ class User implements UserInterface
         return $this->email;
     }
 
+     public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     /**
      * Set password
      *
@@ -226,12 +245,12 @@ class User implements UserInterface
      * @return User
      */
     
-    public function setSalt($salt)
+    /*public function setSalt($salt)
     {
         $this->salt = $salt;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get salt
@@ -272,38 +291,26 @@ class User implements UserInterface
     }
     
     /**
-     * Add comment
+     * Set picture
      *
-     * @param \ST\AppBundle\Entity\Comment $comment
+     * @param \ST\AppBundle\Entity\Picture $picture
      *
      * @return User
      */
-    public function addComment(\ST\AppBundle\Entity\Comment $comment)
+    public function setPicture(\ST\AppBundle\Entity\Picture $picture = null)
     {
-        $this->comments[] = $comment;
-
-         $comment->setUser($this);
+        $this->picture = $picture;
 
         return $this;
     }
 
     /**
-     * Remove comment
+     * Get picture
      *
-     * @param \ST\AppBundle\Entity\Comment $comment
+     * @return \ST\AppBundle\Entity\Picture
      */
-    public function removeComment(\ST\AppBundle\Entity\Comment $comment)
+    public function getPicture()
     {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getComments()
-    {
-        return $this->comments;
+        return $this->picture;
     }
 }

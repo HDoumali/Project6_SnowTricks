@@ -18,6 +18,16 @@ register:
     defaults:
         _controller: STUserBundle:Security:register
 
+register_validation:
+    path: /register_validation/{token}
+    defaults:
+        _controller: STUserBundle:Security:registerValidation
+
+forgot_password:
+    path: /forgot_password
+    defaults:
+        _controller: STUserBundle:Security:forgotPassword
+
 profile:
     path: /profile
     defaults:

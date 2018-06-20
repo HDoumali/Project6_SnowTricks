@@ -88,6 +88,25 @@ class User implements UserInterface
     private $comments;
     
     /**
+     * @ORM\Column(name="validationtoken", type="string", nullable=true)
+     */
+    private $validationToken;
+    
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {   
+        $this->isActive = false;
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return int
@@ -302,5 +321,87 @@ class User implements UserInterface
     public function getPicture()
     {
         return $this->picture;
+    }
+    
+    /**
+     * Set validationToken
+     *
+     * @param string $validationToken
+     *
+     * @return User
+     */
+    public function setValidationToken($validationToken)
+    {
+        $this->validationToken = $validationToken;
+
+        return $this;
+    }
+
+    /**
+     * Get validationToken
+     *
+     * @return string
+     */
+    public function getValidationToken()
+    {
+        return $this->validationToken;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

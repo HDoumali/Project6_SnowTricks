@@ -4,6 +4,7 @@ namespace ST\UserBundle\Controller;
 
 use ST\UserBundle\Entity\User;
 use ST\UserBundle\Form\UserType;
+use ST\UserBundle\Form\ForgotPasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -39,11 +40,26 @@ class SecurityController extends Controller
       $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
       $user->setPassword($password);
 
+      $user->setValidationToken(md5(time()*rand(542, 792)));
+
       $em = $this->getDoctrine()->getManager();
       $em->persist($user);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'Votre compte a bien été enregistré, vous pouvez désormais vous connecter.');
+      $request->getSession()->getFlashBag()->add('message', 'Votre compte a bien été enregistré, un mail de confirmation a été envoyé sur votre addresse mail, veuillez cliquer sur le lien proposé.');
+
+      $message = (new \Swift_Message('Confirmation d\'inscription sur le site SnowTricks'))
+        ->setFrom('doumalihassan4@yahoo.fr')
+        ->setTo($user->getEmail())
+        ->setBody(
+            $this->renderView('STUserBundle:Security:registerValidation.html.twig', array(
+                'name' => $user->getUsername(),
+                'token' => $user->getValidationToken()
+            )),
+            'text/html'
+        );
+
+      $this->get('mailer')->send($message);
 
       return $this->redirectToRoute('st_app_home');
     }
@@ -51,6 +67,71 @@ class SecurityController extends Controller
     return $this->render('STUserBundle:Security:register.html.twig', array(
         'form' => $form->createView(),
     ));
+  }
+
+  public function registerValidationAction(Request $request, $token)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $user = $em->getRepository('STUserBundle:User')->findOneBy(array('validationToken' => $token));
+
+    if($user) {
+
+      $user->setValidationToken(null);
+      $user->setIsActive(true);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('message', 'Bonjour, votre compte est désormais actif, vous pouvez vous connecter à votre espace.');
+    } else {
+
+      $request->getSession()->getFlashBag()->add('message', 'Oups ! Vous venez de cliquer sur un lien qui n\'existe pas');
+    }
+
+    return $this->redirectToRoute('st_app_home');
+  }
+  
+  public function forgotPasswordAction(Request $request)
+  {
+     $em = $this->getDoctrine()->getManager();
+
+     $form = $this->get('form.factory')->create(ForgotPasswordType::class);
+     $user = $form->getData();
+
+     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+        $user = $em->getRepository('STUserBundle:User')->findOneBy(array('username' => $user->getUsername()));
+
+         if($user) {
+
+              $user->setValidationToken(md5(time()*rand(542, 792)));
+              $em->flush();
+
+              $request->getSession()->getFlashBag()->add('message', 'Un mail de validation a été envoyé sur adresse email, veuillez cliquer sur le lien proposé afin de pouvoir modifier votre ancien mot de passe.');
+
+              $message = (new \Swift_Message('Modification du mot de passe sur le site SnowTricks'))
+                ->setFrom('doumalihassan4@yahoo.fr')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView('STUserBundle:Security:forgotPasswordValidation.html.twig', array(
+                        'name' => $user->getUsername(),
+                        'token' => $user->getValidationToken()
+                    )),
+                    'text/html'
+                );
+
+              $this->get('mailer')->send($message);
+         } else {
+
+              $request->getSession()->getFlashBag()->add('message', 'Nom d\'utilisateur invalide');
+              return $this->redirectToRoute('forgot_password');
+         }
+
+         return $this->redirectToRoute('st_app_home');
+     }
+   return $this->render('STUserBundle:Security:forgotPassword.html.twig', array(
+        'form' => $form->createView(),
+    ));
+
   }
 
   public function profileAction()
