@@ -14,30 +14,57 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class TrickController extends Controller
 {
-  public function indexAction()
-  {
+  public function indexAction($page)
+  { 
+    if ($page < 1) {
+      throw new NotFoundHttpException('Page '.$page.' inexistante.');
+    }
+
+    $nbPerPage = 6;
     
     //Récupérer la liste des figures
     $listTricks = $this->getDoctrine()
     ->getManager()
     ->getRepository('STAppBundle:Trick')
-    ->getTricks()
+    ->getTricks($page, $nbPerPage)
     ;
+
+    $nbPages = ceil(count($listTricks) / $nbPerPage);
+
+    // Si la page n'existe pas, on retourne une 404
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException('La page '.$page.' n\'existe pas.');
+    }
 
     return $this->render('STAppBundle:Trick:index.html.twig', array(
       'listTricks' => $listTricks,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
     ));
   }
 
-  public function viewAction(Trick $trick, Request $request)
+  public function viewAction(Trick $trick, Request $request, $page)
   {
+    if ($page < 1) {
+      throw new NotFoundHttpException('Page '.$page.' inexistante.');
+    }
+
+    $nbPerPage = 1;
+
     $em = $this->getDoctrine()->getManager();
 
     $trick_id = $trick->getId();
     $listComments = $em
     ->getRepository('STAppBundle:Comment')
-    ->getComments($trick_id)
+    ->getComments($trick_id, $page, $nbPerPage)
     ;
+
+    $nbPages = ceil(count($listComments) / $nbPerPage);
+
+    // Si la page n'existe pas, on retourne une 404
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException('La page '.$page.' n\'existe pas.');
+    }
 
     $comment = new Comment();
     $comment->setDate(new \DateTime());
@@ -59,11 +86,13 @@ class TrickController extends Controller
 
       return $this->redirectToRoute('st_app_view', array('slug' => $trick->getSlug()));
     }
-    
+
     return $this->render('STAppBundle:Trick:view.html.twig', array(
        'trick' => $trick,
        'listComments' => $listComments,
        'form' => $form->createView(),
+       'nbPages'     => $nbPages,
+       'page'        => $page,
     ));
   }
     /**

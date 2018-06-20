@@ -14,7 +14,7 @@ use Doctrine\ORM\QueryBuilder;
  */
 class TrickRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getTricks()
+	public function getTricks($page, $nbPerPage)
 	{
 		$query = $this->createQueryBuilder('t')
 		->leftJoin('t.category', 'c')
@@ -28,6 +28,15 @@ class TrickRepository extends \Doctrine\ORM\EntityRepository
 		->getQuery()
 		;
 
-	    return $query->getResult();
+	    //return $query->getResult();
+
+	    $query
+	      // On définit l'annonce à partir de laquelle commencer la liste
+	      ->setFirstResult(($page-1) * $nbPerPage)
+	      // Ainsi que le nombre d'annonce à afficher sur une page
+	      ->setMaxResults($nbPerPage)
+        ;  
+
+        return new Paginator($query, true);
 	}
 }

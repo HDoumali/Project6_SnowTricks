@@ -4,12 +4,15 @@ st_app_home:
         _controller: STAppBundle:Trick:index
         page:        1
     requirements:
-        page: \d*
-
+        page: \d+
+        
 st_app_view:
-    path:      /trick/{slug}
+    path:      /trick/{slug}/{page}
     defaults:
         _controller: STAppBundle:Trick:view
+        page:        1
+    requirements:
+        page: \d+
 
 st_app_add:
     path:      /add
