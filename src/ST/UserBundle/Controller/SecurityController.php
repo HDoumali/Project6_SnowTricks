@@ -5,6 +5,7 @@ namespace ST\UserBundle\Controller;
 use ST\UserBundle\Entity\User;
 use ST\UserBundle\Form\UserType;
 use ST\UserBundle\Form\ForgotPasswordType;
+use ST\UserBundle\Form\ResetPasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -95,10 +96,10 @@ class SecurityController extends Controller
      $em = $this->getDoctrine()->getManager();
 
      $form = $this->get('form.factory')->create(ForgotPasswordType::class);
-     $user = $form->getData();
-
+    
      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
+        
+        $user = $form->getData();
         $user = $em->getRepository('STUserBundle:User')->findOneBy(array('username' => $user->getUsername()));
 
          if($user) {
@@ -132,6 +133,35 @@ class SecurityController extends Controller
         'form' => $form->createView(),
     ));
 
+  }
+
+  public function resetPasswordAction(Request $request, $token, UserPasswordEncoderInterface $passwordEncoder)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    if($user = $em->getRepository('STUserBundle:User')->findOneBy(array('validationToken' => $token))) {
+
+        $form = $this->get('form.factory')->create(ResetPasswordType::class, $user);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+          $user->setValidationToken(null);
+          $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+          $user->setPassword($password);
+          $em->flush();
+
+          $request->getSession()->getFlashBag()->add('message', 'Bonjour '. $user->getUsername(). ', Votre mot de passe a été changé avec succès, vous pouvez désormais vous connecter');
+
+          return $this->redirectToRoute('st_app_home');
+
+        }
+          $request->getSession()->getFlashBag()->add('message', 'Oups ! Une erreur s\'est produite, merci de renouveller votre demande');
+    }
+
+    return $this->render('STUserBundle:Security:resetPassword.html.twig', array(
+          'user' => $user,
+          'form' =>$form->createView(),
+    ));
   }
 
   public function profileAction()

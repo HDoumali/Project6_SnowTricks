@@ -28,6 +28,11 @@ forgot_password:
     defaults:
         _controller: STUserBundle:Security:forgotPassword
 
+reset_password:
+    path: /reset_password/{token}
+    defaults:
+        _controller: STUserBundle:Security:resetPassword
+
 profile:
     path: /profile
     defaults:

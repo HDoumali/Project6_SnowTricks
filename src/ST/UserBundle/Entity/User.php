@@ -31,6 +31,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse email", groups={"forgotPassword"})
      */
     private $username;
 
@@ -65,6 +66,7 @@ class User implements UserInterface
     /**
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
+     * @Assert\NotBlank(groups={"resetPassword"})
      */
     private $plainPassword;
 
