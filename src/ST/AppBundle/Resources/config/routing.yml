@@ -46,6 +46,19 @@ st_app_delete_picture:
         _controller: STAppBundle:Picture:delete
     requirements:
         id: \d+
-        
+
+st_app_edit_video:
+    path:      /editvideo/{id}
+    defaults:
+        _controller: STAppBundle:Video:edit
+    requirements:
+        id: \d+
+
+st_app_delete_video:
+    path:     /deletevideo/{id}
+    defaults:
+        _controller: STAppBundle:Video:delete 
+    requirements:
+        id: \d+
 
 

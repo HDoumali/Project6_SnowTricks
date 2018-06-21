@@ -20,7 +20,7 @@ class TrickController extends Controller
       throw new NotFoundHttpException('Page '.$page.' inexistante.');
     }
 
-    $nbPerPage = 6;
+    $nbPerPage = 12;
     
     //Récupérer la liste des figures
     $listTricks = $this->getDoctrine()
@@ -32,7 +32,7 @@ class TrickController extends Controller
     $nbPages = ceil(count($listTricks) / $nbPerPage);
 
     // Si la page n'existe pas, on retourne une 404
-    if ($page > $nbPages) {
+    if ($page > $nbPages && $nbPages >= 1) {
       throw $this->createNotFoundException('La page '.$page.' n\'existe pas.');
     }
 
@@ -61,7 +61,7 @@ class TrickController extends Controller
 
     $nbPages = ceil(count($listComments) / $nbPerPage);
 
-    if ($page > $nbPages) {
+    if ($page > $nbPages && $nbPages >= 1) {
       throw $this->createNotFoundException('La page '.$page.' n\'existe pas.');
     }
 
@@ -85,7 +85,7 @@ class TrickController extends Controller
 
       return $this->redirectToRoute('st_app_view', array('slug' => $trick->getSlug()));
     }
-
+    
     return $this->render('STAppBundle:Trick:view.html.twig', array(
        'trick' => $trick,
        'listComments' => $listComments,
