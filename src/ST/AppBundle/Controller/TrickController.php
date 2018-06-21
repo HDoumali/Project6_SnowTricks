@@ -61,7 +61,6 @@ class TrickController extends Controller
 
     $nbPages = ceil(count($listComments) / $nbPerPage);
 
-    // Si la page n'existe pas, on retourne une 404
     if ($page > $nbPages) {
       throw $this->createNotFoundException('La page '.$page.' n\'existe pas.');
     }

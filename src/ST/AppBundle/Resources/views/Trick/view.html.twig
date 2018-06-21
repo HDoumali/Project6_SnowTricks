@@ -41,11 +41,13 @@
 	<div class="row">
 		
 		{% for picture in trick.pictures %}
-			<div class="col-sm-6 col-md-5">
-				<div class="thumbnail">
-					<img src="{{ asset(picture.webPath) }}" class="img-responsive" alt="{{ picture.alt }}">
+			{% if not loop.first %}
+				<div class="col-sm-6 col-md-5">
+					<div class="thumbnail">
+						<img src="{{ asset(picture.webPath) }}" class="img-responsive" alt="{{ picture.alt }}">
+				    </div>
 			    </div>
-		    </div>
+			{% endif %}
 		{% endfor %}
     </div>
 {% else %}
