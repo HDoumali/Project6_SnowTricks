@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#st_appbundle_trick_pictures');
+    var $container = $('div#st_appbundle_trick_videos');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
