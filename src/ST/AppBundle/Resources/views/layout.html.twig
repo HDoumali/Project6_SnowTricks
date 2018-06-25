@@ -11,19 +11,26 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
       <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" type="text/css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet">
     {% endblock %}
     
   </head>
 
   <body>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default hidden-xs">
           <div class="container">
+              <a href="{{ path('st_app_home') }}" class="navbar-brand">
+                  <i class="fas fa-snowflake"></i>
+                  <span>SnowTricks</span>
+                  <i class="fas fa-snowflake"></i>
+              </a>
               <ul class="nav navbar-nav navbar-right">
                   <li>
-                      <a href="{{ path('st_app_home') }}">Accueil</a>
+                      <a href="{{ path('st_app_home') }}">ACCUEIL</a>
                   </li>
                   <li>
-                      <a href="#">Tricks</a>
+                      <a href="#">TRICKS</a>
                   </li>
                   {% if is_granted('ROLE_USER') %}
                     <li>
@@ -32,17 +39,17 @@
                   {% endif %}
                   {% if not is_granted('ROLE_USER') %}
                   <li>
-                      <a href="{{ path('login') }}">Connexion</a>
+                      <a href="{{ path('login') }}">CONNEXION</a>
                   </li>
                   {% endif %}
                   {% if is_granted('ROLE_USER') %}
                     <li>
-                        <a href="{{ path('logout') }}">Deconnexion</a>
+                        <a href="{{ path('logout') }}">DECONNEXION</a>
                     </li>
                   {% endif %}
                   {% if not is_granted('ROLE_USER') %}
                   <li>
-                      <a href="{{ path('register') }}">Inscription</a>
+                      <a href="{{ path('register') }}">INSCRIPTION</a>
                   </li>
                   {% endif %}
               </ul> 
@@ -59,19 +66,51 @@
                         <h3>Suivez-nous sur les réseaux sociaux :</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="https://twitter.com/?lang=fr" target="blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                                <a href="https://twitter.com/?lang=fr" target="blank" class="btn-social btn-outline"><i class="fab fa-2x fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.facebook.com/" target="blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/" target="blank" class="btn-social btn-outline"><i class="fab fa-2x fa-facebook"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.instagram.com/" target="blank" class="btn-social btn-outline"><i class="fa fa-fw fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/" target="blank" class="btn-social btn-outline"><i class="fab fa-2x fa-instagram"></i></a>
                             </li>
                         </ul><br />
                 </div>
       </div>
-      <p>Copyright © {{ 'now'|date('Y') }} - Réalisé par <a href="https://github.com/HDoumali/" target="blank" class="btn-social btn-outline">Hassan DOUMALI</a></p>
+      <p>Copyright © {{ 'now'|date('Y') }} - Réalisé par <a class="copyright" href="https://github.com/HDoumali/" target="blank" class="btn-social btn-outline">Hassan DOUMALI</a></p>
     </footer>
+    
+       <nav class="navbar hidden-sm hidden-md hidden-lg navbarmenuxs">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-center" id="navbarxs">
+                  <div class="row">
+                    <div class="col-xs-4">
+                        <li>
+                            <a href="{{ path('st_app_home') }}"><i class="fas fa-2x fa-home"></i></a>
+                        </li>
+                    </div>
+                    <div class="col-xs-4">
+                        <li>
+                            <a href="#"><i class="fas fa-2x fa-bookmark"></i></a>
+                        </li>
+                    </div>
+                    <div class="col-xs-4">
+                        {% if not is_granted('ROLE_USER') %}
+                        <li>
+                            <a href="{{ path('login') }}"><i class="fas fa-2x fa-sign-in-alt"></i></a>
+                        </li>
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-4">
+                        {% if is_granted('ROLE_USER') %}
+                          <li>
+                              <a href="{{ path('logout') }}"><i class="fas fa-2x fa-sign-out-alt"></i></a>
+                          </li>
+                        {% endif %}
+                    </div>
+                </ul> 
+            </div>
+        </nav>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
