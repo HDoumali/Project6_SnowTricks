@@ -29,7 +29,7 @@ h4
 	width: 100%;
 	background: url('../img/img6.jpg') no-repeat center center;
 	background-size: cover;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 	text-align: center;
 	height: 600px;
 	color: #4aa6b5;
@@ -102,6 +102,12 @@ ul#navbarxs li
 {
 	height: 200px;
     width: 100%;
+}
+
+.add_trick
+{
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 .listTricks a
@@ -229,14 +235,16 @@ footer a
 {
 	background-color: #81cbc8;
 	border: 2px solid #4aa6b5;
+	color: white;
 	font-weight: bold;
 }
 
 .btn:hover
 {
 	background-color: #4aa6b5;
-	border: 2px solid #81cbc8;
+	border: 2px solid #d6c481;
 	font-weight: bold;
+	color: #d6c481;
 	
 }
 
@@ -278,6 +286,53 @@ hr
 {
 	background-color: #ecfafb;
 	border: 1px solid #ecfafb;
+}
+
+.presentation_trick a
+{
+	color: #81cbc8!important;
+	padding-right: 8px;
+	font-weight: bold;
+}
+
+.presentation_trick a:hover
+{
+	color: #4aa6b5!important;
+	text-decoration: none!important;
+}
+
+.form_edit
+{
+	width: 80%;
+	margin-right: 10%;
+	margin-left: 10%;
+}
+
+.well
+{
+	background-color: #ecfafb;
+	border: 1px solid #ecfafb;
+	padding-bottom: 5px;
+}
+
+.btn-danger
+{
+	background-color: red;
+	color: white;
+	border: 2px solid red;
+}
+
+.btn-danger:hover
+{
+	background-color: white;
+	color: red;
+	border: 2px solid red;
+}
+
+.video iframe
+{
+	width: 100%;
+	background-size: cover;
 }
 
 #login

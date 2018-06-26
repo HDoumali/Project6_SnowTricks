@@ -21,7 +21,9 @@
     </div>
    
    {% if is_granted('ROLE_USER') %}
-   		<a href="{{ path('st_app_add') }}"><h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ajouter une figure</h4></a>
+	   	<div class="add_trick">
+	   		<a href="{{ path('st_app_add') }}"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ajouter une figure</button></a>
+	   	</div>
    {% endif %}
 
     <div class="container">
