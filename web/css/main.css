@@ -3,6 +3,11 @@ body
 	font-family: 'Roboto', sans-serif;
 }
 
+h4
+{
+	color: #81cbc8;
+}
+
 .navbar-brand
 {
 	font-size: 2em;
@@ -85,6 +90,7 @@ ul#navbarxs li
 .thumbnail
 {
 	padding: 0px!important;
+	border-radius: 8px;
 }
 
 .thumbnail.index
@@ -133,14 +139,19 @@ footer a
 .img_presentation_trick img
 {
   width: 100%;
+  border-radius: 4px!important;
 }
 
 .img_presentation_trick .setting_trick
 {
 	position: absolute;
-	right: 15px;
 	background-color: #ecfafb;
 	border-radius: 2px;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .img_presentation_trick .setting_trick a
@@ -153,12 +164,114 @@ footer a
 	color: #81cbc8;
 }
 
-.content_comment
+.presentation_trick h1
 {
-	background-color: lightgrey;
-	border-radius: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	color: #4aa6b5;
+}
+
+/*.presentation_trick img
+{
+	width: 100%;
+	height: auto;*/
+}
+
+.picture 
+{
+	width: 100%;
+	height: 80%;
+}
+
+.picture img
+{
+	width: 100%;
+	height: 300px;
+	background-size: cover;
+	margin-bottom: 10px;
+	border-radius: 8px;
+}
+
+.description_trick
+{
+	width: 80%;
+	background: #ecfafb;
+	margin-right: 10%;
+	margin-left: 10%;
+	text-align: justify;
+	border-radius: 5px;
 	padding-left: 10px;
-	margin: 30px 10px;
+	padding-right: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.information_trick
+{
+	width: 80%;
+	margin-right: 10%;
+	margin-left: 10%;
+	text-align: center;
+}
+
+#btn_category
+{
+	background-color: #81cbc8;
+}
+
+.form-group
+{
+	font-family: 'Lobster', cursive;
+	color: grey;
+}
+
+.btn
+{
+	background-color: #81cbc8;
+	border: 2px solid #4aa6b5;
+	font-weight: bold;
+}
+
+.btn:hover
+{
+	background-color: #4aa6b5;
+	border: 2px solid #81cbc8;
+	font-weight: bold;
+	
+}
+
+.form_comment
+{
+	width: 70%;
+	margin-right: 15%;
+	margin-left: 15%;
+}
+
+.list_comment
+{
+	width:70%;
+	margin-right: 15%;
+	margin-left: 15%;
+}
+
+.list_comment img
+{
+	width:70%;
+	height: auto;
+	border-radius: 5px;
+	top:0;
+}
+
+.list_comment span
+{
+	color: #4aa6b5;
+}
+
+hr
+{
+	margin-top: 10px!important;
+	margin-bottom: 10px!important;
+	border-top: 1px solid #4aa6b5;
 }
 
 .form_comment .well
@@ -168,6 +281,11 @@ footer a
 }
 
 #login
+{
+	margin-top: 100px;
+}
+
+#trick
 {
 	margin-top: 100px;
 }

@@ -6,9 +6,9 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container" id="trick">
 <div class="thumbnail">
-<div class="img_presentation_trick col-lg-12">
+<div class="img_presentation_trick">
 	{% for picture in trick.pictures %}
 		{% if loop.first %}
 			    <div class="setting_trick">
@@ -27,91 +27,96 @@
 </div>
 
 <div class="presentation_trick">
-<h1>{{ trick.name }}</h1>
+	<h1>{{ trick.name|capitalize }}</h1>
+	<br />
 
-<p>{{ trick.description }}</p>
-
-{% if trick.category is not null %}
-	<p>{{ trick.category.name }}</p>
-{% else %}
-	<p>Pas de catégorie</p>
-{% endif %}
-
-{% if trick.pictures is not empty %}
-	<div class="row">
-		
-		{% for picture in trick.pictures %}
-			{% if not loop.first %}
-				<div class="col-sm-6 col-md-5">
-					<div class="thumbnail">
-						<img src="{{ asset(picture.webPath) }}" class="img-responsive" alt="{{ picture.alt }}">
+	{% if trick.pictures is not empty %}
+		<div class="row">
+			{% for picture in trick.pictures %}
+				{% if not loop.first %}
+					<div class="col-xs-12 col-md-3 picture">
+							<img src="{{ asset(picture.webPath) }}" class="img-responsive" alt="{{ picture.alt }}">
 				    </div>
-			    </div>
-			{% endif %}
-		{% endfor %}
-    </div>
-{% else %}
-	<p>Pas d'image</p>
-{% endif %}
+				{% endif %}
+			{% endfor %}
+	    </div>
+	{% else %}
+		<p>Pas d'image.</p>
+	{% endif %}
+	<br />
 
-{% if trick.videos is not empty %}
-	{% for video in trick.videos %}
-		<iframe width="560" height="315" src="{{ video.link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-	{% endfor %}
-{% else %}
-	<p>Pas de video</p>
-{% endif %}
+	{% if trick.videos is not empty %}
+			{% for video in trick.videos %}
+					<iframe width="500" height="255" src="{{ video.link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			{% endfor %}
+	{% else %}
+		<p>Pas de video.</p>
+	{% endif %}
 </div>
+
+<div class="description_trick">
+	<p>{{ trick.description }}</p>
+</div>
+
+<div class="information_trick">
+	{% if trick.category is not null %}
+		<p>Catégorie : <em><button type="button" class="btn" id="btn_category">{{ trick.category.name }}</button></em></p>
+	{% else %}
+		<p>Pas de catégorie</p>
+	{% endif %}
+</div>
+<br />
+
+<h4><i class="far fa-2x fa-comment-alt"></i> Ajouter un commentaire</h4>
 
 <div class="form_comment">
-<h3>Ajouter un commentaire</h3>
+	<div class="well">
+		  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		  {{ form_errors(form) }}
 
- <div class="well">
-  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-  {{ form_errors(form) }}
+		  <div class="form-group">
+			    {{ form_label(form.content, "Message", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+			    {{ form_errors(form.content) }}
+			    <div class="col-sm-10">
+			      	{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+			    </div>
+		  </div>
 
-  <div class="form-group">
-	    {{ form_label(form.content, "Message", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-	    {{ form_errors(form.content) }}
-	    <div class="col-sm-10">
-	      {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-	    </div>
-  </div>
+		  {{ form_rest(form) }}
+		  {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+		  {{ form_end(form) }}
+	</div>
 
-  {{ form_rest(form) }}
-  {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
-  {{ form_end(form) }}
-</div>
-
-<p>Ce commentaire sera ajoutée directement à l'espace de discussion</p>
+	<p><span class="label label-info">Info</span> Ce commentaire sera ajouté directement à l'espace de discussion.</p>
 </div>
 
 <div>
     {% for message in app.session.flashbag.get('message') %}
-		<p>Message flash : {{ message }}</p>
+		<div class="alert alert-success" role="alert">{{ message }}</div>
+		<!--<p>Message flash :</p>-->
     {% endfor %}
 </div>
 
-<div class="list_comment">
-<h3>Espace de discussion </h3>
+<h4><i class="far fa-2x fa-comments"></i> Espace de discussion </h4>
 
-{% for comment in listComments %}
-	<div class="thumbnail">
-		<div class="row">
-		<div class="col-xs-5 col-sm-3 col-md-3 col-lg-2">
-			<img src="{{ asset(comment.user.picture.webPath) }}" class="img-responsive" alt="{{ comment.user.picture.alt }}" style="width: 100%" >
-		</div>
-        <div class="col-xs-7 col-sm-8 col-md-8 col-md-9">
-        	<div class="content_comment">
-		        <p>Commentaire écrit le <strong>{{ comment.date|date('d/m/Y') }}</strong> par <strong><em>{{ comment.user.firstname }} {{ comment.user.lastname }}</em></strong> </p>
-				<p>{{ comment.content }} </p>
-		    </div>
-        </div>
-        </div>
-	</div>
-{% else %}
-	<p>Pas de commentaire.</p>
-{% endfor %}
+<div class="list_comment">
+	{% for comment in listComments %}
+		<!--<div class="thumbnail">-->
+			<div class="row">
+				<div class="col-xs-4 col-sm-3 col-md-3 col-lg-2">
+					<img src="{{ asset(comment.user.picture.webPath) }}" class="img-responsive" alt="{{ comment.user.picture.alt }}">
+				</div>
+		        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-10">
+				        <h5><strong>{{ comment.user.firstname }} {{ comment.user.lastname }}</strong> </h5>
+				        <span>Le <em>{{ comment.date|date('d/m/Y') }}</em></span>
+				        <hr>
+						<p>{{ comment.content }} </p>
+		        </div>
+	        </div>
+		<!--</div>-->
+	{% else %}
+		<p>Pas de commentaire.</p>
+	{% endfor %}
 </div>
 
 <ul class="pagination">
