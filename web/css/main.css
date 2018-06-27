@@ -335,6 +335,48 @@ hr
 	background-size: cover;
 }
 
+.form_add_trick
+{
+	width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 100px;
+}
+
+.delete_trick
+{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.form_edit_picture
+{
+	width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 100px;
+}
+
+.form_edit_video
+{
+	width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 100px;
+}
+
+.delete_picture
+{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.delete_video
+{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
 #login
 {
 	margin-top: 100px;
@@ -344,3 +386,4 @@ hr
 {
 	margin-top: 100px;
 }
+

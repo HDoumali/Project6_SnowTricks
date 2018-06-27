@@ -11,10 +11,15 @@
 
 {% block body %}
 
-	<h3>Ajouter une figure</h3>
+	<div class="container">
+	    <div class="form_add_trick">
 
-	{{ include("STAppBundle:Trick:form.html.twig") }}
+			<h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ajouter une figure</h4>
 
-	<p>Cette figure sera ajoutée directement sur la page d'accueil après validation du formulaire</p>
+			{{ include("STAppBundle:Trick:form.html.twig") }}
+
+			<p><span class="label label-info">Info</span> Cette figure sera ajoutée directement sur la page d'accueil après validation du formulaire.</p>
+		</div>
+	</div>
 	
 {% endblock %}

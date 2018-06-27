@@ -1,21 +1,26 @@
 {% extends "STAppBundle::layout.html.twig" %}
 
 {% block title %}
-	Supprimer une figure - {{ parent() }}
+	Supprimer la figure {{ trick.name }} - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-	<h3>Supprimer une figure</h3>
+	<div class="container">
+	    <div class="delete_trick">
+			<h4><i class="far fa-trash-alt"></i> Supprimer une figure</h4>
 
-	<p>Etes-vous sur de vouloir supprimer la figure "{{ trick.name }}"</p>
+			<p>Etes-vous sur de vouloir supprimer la figure "{{ trick.name|upper }}" ?</p>
 
-	<form action="{{ path('st_app_delete', {'id' : trick.id}) }}" method="POST">
-		<a href="{{ path('st_app_home') }}" class="btn btn-default">Revenir à la page d'accueil</a> 
-		<input type="submit" value="Supprimer" class="btn btn-danger">
-		{{ form_rest(form) }}
-	</form>
+			<form action="{{ path('st_app_delete', {'id' : trick.id}) }}" method="POST">
+				<a href="{{ path('st_app_home') }}" class="btn btn-default"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>Revenir à la page d'accueil</a> 
+				<input type="submit" value="Supprimer" class="btn btn-danger">
+				{{ form_rest(form) }}
+			</form>
+			<br />
 
-	<p>ATTENTION : Cette figure sera supprimée définitivement de la liste</p>
+			<p><span class="label label-warning">Warning</span> Cette figure sera supprimée définitivement de la liste des figures.</p>
+		</div>
+    </div>
 	
 {% endblock %}
