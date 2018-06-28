@@ -405,9 +405,58 @@ hr
 	font-weight: bold;
 }
 
-#login
+.form_login
 {
-	margin-top: 100px;
+	font-family: 'Lobster', cursive;
+	margin-top: 50px;
+}
+
+.form_login a
+{
+	color: #4aa6b5;
+	text-align: center;
+}
+
+.form_login a:hover
+{
+	color: #4aa6b5;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.form_login h3
+{
+	text-align: center;
+	color: #4aa6b5;
+}
+
+.form_forgot_password
+{
+	margin-top: 50px;
+	font-family: 'Lobster', cursive;
+}
+
+.form_forgot_password h3
+{
+	text-align: center;
+	color: #4aa6b5;
+}
+
+.form_reset_password
+{
+	margin-top: 50px;
+	font-family: 'Lobster', cursive;
+}
+
+.form_reset_password h3
+{
+	text-align: center;
+	color: #4aa6b5;
+}
+
+.profile
+{
+	margin-top: 50px;
 }
 
 #trick

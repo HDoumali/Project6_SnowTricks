@@ -1,21 +1,43 @@
 {% extends "STAppBundle::layout.html.twig" %}
 
 {% block body %}
-  <div class="container" id="login">
-      {% if error %}
-          <div class="alert alert-danger">{{ error.message }}</div>
-      {% endif %}
 
-      {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
-      <form action="{{ path('login_check') }}" method="post">
-          <label for="username">Login :</label>
-          <input type="text" id="username" name="_username" value="{{ last_username }}" />
+  <div class="container">
+    <div class="row">
+        <div class="form_login col-md-6 col-md-offset-3">
+            
+            <h3>CONNEXION</h3>
+            
+            <div class="well">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.message }}</div>
+                {% endif %}
 
-          <label for="password">Mot de passe :</label>
-          <input type="password" id="password" name="_password" />
-          <br />
-          <input type="submit" value="Connexion" />
-      </form>
+                {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
+                <form action="{{ path('login_check') }}" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2">Login :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="password" class="col-sm-2">Mot de passe :</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="_password" />
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Connexion" class="btn" />
+
+                    <a href="{{ path('register') }}"><p>Pas encore inscrit ?</p></p>
+                    <a href="{{ path('forgot_password') }}"><p>Mot de passe oublié ?</p></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
   </div>
 
 {% endblock %}
