@@ -14,8 +14,7 @@ class VideoEditType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        ->add('Modifier', SubmitType::class);
+    
     }
 
      public function getParent()

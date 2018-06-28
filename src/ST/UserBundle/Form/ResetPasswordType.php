@@ -23,7 +23,6 @@ class ResetPasswordType extends AbstractType
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
         ))
-        ->add('Valider', SubmitType::class);
     }
 
     /**

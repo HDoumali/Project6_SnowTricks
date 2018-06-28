@@ -262,14 +262,6 @@ footer a
 	margin-left: 15%;
 }
 
-.list_comment img
-{
-	width:70%;
-	height: auto;
-	border-radius: 5px;
-	top:0;
-}
-
 .list_comment span
 {
 	color: #4aa6b5;
@@ -462,6 +454,12 @@ hr
 .profile h3
 {
 	color: #4aa6b5;
+	font-family: 'Lobster', cursive;
+}
+
+.btn_form
+{
+	text-align: center;
 	font-family: 'Lobster', cursive;
 }
 

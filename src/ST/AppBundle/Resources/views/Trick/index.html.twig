@@ -30,7 +30,7 @@
 
     	 <div>
 		    {% for message in app.session.flashbag.get('message') %}
-		      <p>Message flash : {{ message }}</p>
+		      <div class="alert alert-success" role="alert">{{ message }}</div>
 		    {% endfor %}
          </div>
 

@@ -17,8 +17,7 @@ class ForgotPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('username', TextType::class)
-        ->add('Valider', SubmitType::class);
+        ->add('username', TextType::class);
     }
 
     /**
