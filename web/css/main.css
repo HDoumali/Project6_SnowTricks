@@ -377,6 +377,34 @@ hr
 	margin-bottom: 100px;
 }
 
+.form_register
+{
+	width: 80%;
+	margin-right: 10%;
+	margin-left: 10%;
+	margin-top: 60px;
+	font-family: 'Lobster', cursive;
+}
+
+.form_register h3
+{
+	color: #4aa6b5;
+	text-align: center;
+}
+
+.form_register a
+{
+	color: #4aa6b5;
+	text-align: center;
+}
+
+.form_register a:hover
+{
+	color: #4aa6b5;
+	text-decoration: none;
+	font-weight: bold;
+}
+
 #login
 {
 	margin-top: 100px;
