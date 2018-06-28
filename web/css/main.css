@@ -456,7 +456,13 @@ hr
 
 .profile
 {
-	margin-top: 50px;
+	margin-top: 60px;
+}
+
+.profile h3
+{
+	color: #4aa6b5;
+	font-family: 'Lobster', cursive;
 }
 
 #trick
