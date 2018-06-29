@@ -30,7 +30,7 @@ class VideoController extends Controller
 
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'La vidéo a bien été modifiée');
+      $request->getSession()->getFlashBag()->add('video', 'La vidéo a bien été modifiée.');
 
       return $this->redirectToRoute('st_app_view', array('slug' => $slug));
     }
@@ -59,7 +59,7 @@ class VideoController extends Controller
       $em->remove($video);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'La video a bien été supprimée');
+      $request->getSession()->getFlashBag()->add('video', 'La video a bien été supprimée.');
 
       return $this->redirectToRoute('st_app_view', array('slug' => $slug));
     }

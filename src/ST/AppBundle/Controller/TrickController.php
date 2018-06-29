@@ -49,7 +49,7 @@ class TrickController extends Controller
       throw new NotFoundHttpException('Page '.$page.' inexistante.');
     }
 
-    $nbPerPage = 1;
+    $nbPerPage = 10;
 
     $em = $this->getDoctrine()->getManager();
 
@@ -81,7 +81,7 @@ class TrickController extends Controller
       $em->persist($comment);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'le commentaire a bien été ajouté.');
+      $request->getSession()->getFlashBag()->add('comment', 'Le commentaire a bien été ajouté.');
 
       return $this->redirectToRoute('st_app_view', array('slug' => $trick->getSlug()));
     }

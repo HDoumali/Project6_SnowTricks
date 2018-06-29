@@ -335,6 +335,11 @@ hr
 	margin-top: 100px;
 }
 
+.form-group#st_appbundle_trick_pictures
+{
+
+}
+
 .delete_trick
 {
 	margin-top: 100px;
@@ -461,6 +466,18 @@ hr
 {
 	text-align: center;
 	font-family: 'Lobster', cursive;
+}
+
+.pagination_center
+{
+	text-align: center;
+}
+
+li.active a
+{
+	color: white!important;
+	background-color: #4aa6b5!important;
+	border: 1px solid #4aa6b5!important;
 }
 
 #trick

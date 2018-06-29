@@ -30,7 +30,7 @@ class PictureController extends Controller
 
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'L\'image a bien été modifiée');
+      $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été modifiée.');
 
       return $this->redirectToRoute('st_app_view', array('slug' => $slug));
     }
@@ -59,7 +59,7 @@ class PictureController extends Controller
       $em->remove($picture);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('message', 'L\'image a bien été supprimée');
+      $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été supprimée.');
 
       return $this->redirectToRoute('st_app_view', array('slug' => $slug));
     }
