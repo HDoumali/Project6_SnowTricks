@@ -12,62 +12,61 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class VideoController extends Controller
 {
 
-  public function editAction($id, Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-    
-    $video = $em->getRepository('STAppBundle:Video')->find($id);
+    public function editAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $video = $em->getRepository('STAppBundle:Video')->find($id);
 
-    if (null === $video) {
-      throw new NotFoundHttpException("La video d'id ".$id." n'existe pas.");
+        if (null === $video) {
+            throw new NotFoundHttpException("La video d'id ".$id." n'existe pas.");
+        }
+
+        $form = $this->get('form.factory')->create(VideoEditType::class, $video);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $slug = $video->getTrick()->getSlug();
+
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('video', 'La vidéo a bien été modifiée.');
+
+            return $this->redirectToRoute('st_app_view', array('slug' => $slug));
+        }
+
+        return $this->render('STAppBundle:Trick:editVideo.html.twig', array(
+             'video' => $video,
+             'form' => $form->createView(),
+        ));
     }
 
-    $form = $this->get('form.factory')->create(VideoEditType::class, $video);
+    public function deleteAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+       
+        $video = $em->getRepository('STAppBundle:Video')->find($id);
+        $slug = $video->getTrick()->getSlug();
 
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if(null === $video) {
+            throw new NotFoundHttpException("La video d'id ".$id." n'existe pas.");
+        }
 
-      $slug = $video->getTrick()->getSlug();
+        $form = $this->get('form.factory')->create();
 
-      $em->flush();
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-      $request->getSession()->getFlashBag()->add('video', 'La vidéo a bien été modifiée.');
+            $em->remove($video);
+            $em->flush();
 
-      return $this->redirectToRoute('st_app_view', array('slug' => $slug));
+            $request->getSession()->getFlashBag()->add('video', 'La video a bien été supprimée.');
+
+            return $this->redirectToRoute('st_app_view', array('slug' => $slug));
+        }
+
+        return $this->render('STAppBundle:Trick:deleteVideo.html.twig', array(
+              'video' => $video,
+              'form' => $form->createView(),
+        ));
     }
-
-    return $this->render('STAppBundle:Trick:editVideo.html.twig', array(
-         'video' => $video,
-         'form' => $form->createView(),
-    ));
-  }
-
-  public function deleteAction($id, Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-   
-    $video = $em->getRepository('STAppBundle:Video')->find($id);
-    $slug = $video->getTrick()->getSlug();
-
-    if(null === $video) {
-      throw new NotFoundHttpException("La video d'id ".$id." n'existe pas.");
-    }
-
-    $form = $this->get('form.factory')->create();
-
-    if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
-      $em->remove($video);
-      $em->flush();
-
-      $request->getSession()->getFlashBag()->add('video', 'La video a bien été supprimée.');
-
-      return $this->redirectToRoute('st_app_view', array('slug' => $slug));
-    }
-
-    return $this->render('STAppBundle:Trick:deleteVideo.html.twig', array(
-          'video' => $video,
-          'form' => $form->createView(),
-    ));
-  }
-
 }
