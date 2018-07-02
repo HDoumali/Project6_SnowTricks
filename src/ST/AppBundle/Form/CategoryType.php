@@ -15,7 +15,9 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -32,6 +34,4 @@ class CategoryType extends AbstractType
     {
         return 'st_appbundle_category';
     }
-
-
 }
