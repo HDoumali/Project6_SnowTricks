@@ -16,7 +16,9 @@ class PictureType extends AbstractType
     {
         $builder
         ->add('file',FileType::class);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -33,6 +35,4 @@ class PictureType extends AbstractType
     {
         return 'st_appbundle_picture';
     }
-
-
 }
