@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body %}
-
 	<div class="container" id="trick">
 		<div class="thumbnail">
 			<div class="img_presentation_trick">
@@ -129,10 +128,10 @@
 								<img src="{{ asset(comment.user.picture.webPath) }}" style="width: 100%" alt="{{ comment.user.picture.alt }}" class="img-rounded">
 							</div>
 					        <div class="col-xs-7 col-sm-10 col-md-10">
-							        <h5><strong>{{ comment.user.firstname }} {{ comment.user.lastname }}</strong> </h5>
-							        <span>Le <em>{{ comment.date|date('d/m/Y à H:i:s') }}</em></span>
-							        <hr>
-									<p>{{ comment.content }} </p>
+						        <h5><strong>{{ comment.user.firstname }} {{ comment.user.lastname }}</strong> </h5>
+						        <span>Le <em>{{ comment.date|date('d/m/Y à H:i:s') }}</em></span>
+						        <hr>
+								<p>{{ comment.content }} </p>
 					        </div>
 				        </div>
 					<!--</div>-->
@@ -155,11 +154,7 @@
 					{% endif %}
 			    </ul>	
 			</div>
-
-			    
-
 		</div>
 	</div>
-
 {% endblock %}
 
