@@ -1,40 +1,40 @@
 {% extends "STAppBundle::layout.html.twig" %}
 
 {% block title %}
-	Modification de la video - {{ parent() }}
+	 Modification de la video - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <div class="container">
-      <div class="form_edit_video">
+    <div class="container">
+        <div class="form_edit_video">
 
-          <h4><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Vous souhaitez modifier la vidéo n° {{ video.id }} de la figure {{ video.trick.name|upper }}</h4>
+            <h4><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Vous souhaitez modifier la vidéo n° {{ video.id }} de la figure {{ video.trick.name|upper }}</h4>
 
-          <div class="well">
-          	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="well">
+              	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-            {{ form_errors(form) }}
+                {{ form_errors(form) }}
 
-            <div class="form-group">
-                {{ form_label(form.link, "Video", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-                {{ form_errors(form.link) }}
-                <div class="col-sm-10">
-                    {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.link, "Video", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.link) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
+                    </div>
                 </div>
+
+                {{ form_rest(form) }}
+
+                <div class="btn_form">
+                    <input type="submit" value="Modifier" class="btn" />
+                </div>
+                
+                {{ form_end(form) }}
             </div>
 
-            {{ form_rest(form) }}
-
-            <div class="btn_form">
-                <input type="submit" value="Modifier" class="btn" />
-            </div>
-            
-            {{ form_end(form) }}
-          </div>
-
-          <p><span class="label label-info">Info</span> La modification sera visible directement après validation du formulaire</p>
-      </div>
-  </div>
+            <p><span class="label label-info">Info</span> La modification sera visible directement après validation du formulaire</p>
+        </div>
+    </div>
 	
 {% endblock %}
