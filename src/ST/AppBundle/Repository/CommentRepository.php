@@ -25,9 +25,9 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
 		//return $query->getResult();
 
 		$query
-	      // On définit l'annonce à partir de laquelle commencer la liste
+	      // On définit le commentaire à partir duquel  commencer la liste
 	      ->setFirstResult(($page-1) * $nbPerPage)
-	      // Ainsi que le nombre d'annonce à afficher sur une page
+	      // Ainsi que le nombre de commentaire à afficher sur une page
 	      ->setMaxResults($nbPerPage)
         ;  
 
