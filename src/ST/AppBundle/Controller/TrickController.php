@@ -137,7 +137,7 @@ class TrickController extends Controller
             
               $em->flush();
 
-              $request->getSession()->getFlashBag()->add('message', 'La figure a bien été modifiée');
+              $request->getSession()->getFlashBag()->add('message', 'La figure a bien été modifiée.');
 
               return $this->redirectToRoute('st_app_home');
           }
@@ -166,7 +166,7 @@ class TrickController extends Controller
               $em->remove($trick);
               $em->flush();
 
-              $request->getSession()->getFlashBag()->add('message', 'La figure a bien été supprimée');
+              $request->getSession()->getFlashBag()->add('message', 'La figure a bien été supprimée.');
 
               return $this->redirectToRoute('st_app_home');
           }
