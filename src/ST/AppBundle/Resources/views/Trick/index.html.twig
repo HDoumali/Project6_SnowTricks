@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block body %}
-
-	
     <div id="img-presentation">
     	<div class="container">
 	        <div class="row">
@@ -60,15 +58,14 @@
         
         <div class="pagination_center">
 		    <ul class="pagination">
-			  {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
-			  {% for p in range(1, nbPages) %}
-			    <li{% if p == page %} class="active"{% endif %}>
-			      <a href="{{ path('st_app_home', {'page': p}) }}">{{ p }}</a>
-			    </li>
-			  {% endfor %}
+				  {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+				  {% for p in range(1, nbPages) %}
+					    <li{% if p == page %} class="active"{% endif %}>
+					      	<a href="{{ path('st_app_home', {'page': p}) }}">{{ p }}</a>
+					    </li>
+				  {% endfor %}
 	        </ul>
 	    </div>
 
     </div>
-
 {% endblock %}
