@@ -12,62 +12,62 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class PictureController extends Controller
 {
 
-  public function editAction($id, Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-    
-    $picture = $em->getRepository('STAppBundle:Picture')->find($id);
+    public function editAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $picture = $em->getRepository('STAppBundle:Picture')->find($id);
 
-    if (null === $picture) {
-      throw new NotFoundHttpException("L'image d'id ".$id." n'existe pas.");
-    }
+        if (null === $picture) {
+            throw new NotFoundHttpException("L'image d'id ".$id." n'existe pas.");
+        }
 
-    $form = $this->get('form.factory')->create(PictureEditType::class, $picture);
+        $form = $this->get('form.factory')->create(PictureEditType::class, $picture);
 
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-      $slug = $picture->getTrick()->getSlug();
+            $slug = $picture->getTrick()->getSlug();
 
-      $em->flush();
+            $em->flush();
 
-      $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été modifiée.');
+            $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été modifiée.');
 
-      return $this->redirectToRoute('st_app_view', array('slug' => $slug));
-    }
+            return $this->redirectToRoute('st_app_view', array('slug' => $slug));
+        }
 
-    return $this->render('STAppBundle:Trick:editPicture.html.twig', array(
-         'picture' => $picture,
-         'form' => $form->createView(),
-    ));
-  }
+        return $this->render('STAppBundle:Trick:editPicture.html.twig', array(
+             'picture' => $picture,
+             'form' => $form->createView(),
+        ));
+      }
 
-  public function deleteAction($id, Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-   
-    $picture = $em->getRepository('STAppBundle:Picture')->find($id);
-    $slug = $picture->getTrick()->getSlug();
+      public function deleteAction($id, Request $request)
+      {
+          $em = $this->getDoctrine()->getManager();
+         
+          $picture = $em->getRepository('STAppBundle:Picture')->find($id);
+          $slug = $picture->getTrick()->getSlug();
 
-    if(null === $picture) {
-      throw new NotFoundHttpException("L'image d'id ".$id." n'existe pas.");
-    }
+          if(null === $picture) {
+              throw new NotFoundHttpException("L'image d'id ".$id." n'existe pas.");
+          }
 
-    $form = $this->get('form.factory')->create();
+          $form = $this->get('form.factory')->create();
 
-    if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+          if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-      $em->remove($picture);
-      $em->flush();
+              $em->remove($picture);
+              $em->flush();
 
-      $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été supprimée.');
+              $request->getSession()->getFlashBag()->add('picture', 'L\'image a bien été supprimée.');
 
-      return $this->redirectToRoute('st_app_view', array('slug' => $slug));
-    }
+              return $this->redirectToRoute('st_app_view', array('slug' => $slug));
+          }
 
-    return $this->render('STAppBundle:Trick:deletePicture.html.twig', array(
-          'picture' => $picture,
-          'form' => $form->createView(),
-    ));
-  }
+          return $this->render('STAppBundle:Trick:deletePicture.html.twig', array(
+                'picture' => $picture,
+                'form' => $form->createView(),
+          ));
+      }
 
 }
