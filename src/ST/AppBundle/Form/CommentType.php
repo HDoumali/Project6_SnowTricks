@@ -18,6 +18,7 @@ class CommentType extends AbstractType
         $builder
         ->add('content', TextareaType::class);
     }
+    
     /**
      * {@inheritdoc}
      */
@@ -35,6 +36,4 @@ class CommentType extends AbstractType
     {
         return 'st_appbundle_comment';
     }
-
-
 }
