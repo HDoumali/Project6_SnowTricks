@@ -21,5 +21,4 @@ class PictureEditType extends AbstractType
     {
         return PictureType::class;
     }
-
 }
