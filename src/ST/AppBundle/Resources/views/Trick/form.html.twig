@@ -53,11 +53,9 @@
 
     {{ form_rest(form) }}
     
-    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
     {% if form.save is defined %}
         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
     {% endif %}
 
-    {# Fermeture de la balise <form> du formulaire HTML #}
     {{ form_end(form) }}
 </div>
