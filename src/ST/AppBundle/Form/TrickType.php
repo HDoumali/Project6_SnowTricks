@@ -42,7 +42,9 @@ class TrickType extends AbstractType
               'data' => array()
         ))
         ->add('save', SubmitType::class);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -59,6 +61,4 @@ class TrickType extends AbstractType
     {
         return 'st_appbundle_trick';
     }
-
-
 }
