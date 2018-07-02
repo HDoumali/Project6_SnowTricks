@@ -37,6 +37,4 @@ class VideoType extends AbstractType
     {
         return 'st_appbundle_video';
     }
-
-
 }
