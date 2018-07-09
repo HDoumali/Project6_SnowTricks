@@ -2,6 +2,8 @@
 
 ## Parcours développeur d'application - PHP/Symfony 
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1f553232691c49d5aeebc3477a768098)](https://www.codacy.com/app/HDoumali/Project6_SnowTricks?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HDoumali/Project6_SnowTricks&amp;utm_campaign=Badge_Grade)
+
 ### Context 
 
 This project was realized as part of my studies of application developer - PHP / Symfony.
