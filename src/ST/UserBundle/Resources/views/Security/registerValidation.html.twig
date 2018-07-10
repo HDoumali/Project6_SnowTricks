@@ -3,4 +3,8 @@
 <p>Bonjour {{ name }}, il ne reste plus qu'une étape pour valider votre inscription sur notre site et en prendre plein les yeux.</p>
 
 <p>Pour rendre votre compte actif, veuillez cliquer sur ce lien : 
- <a href="{{ path('register_validation', {'token': token}) }}">Lien de validation du compte SnowTricks</a></p>
+ <a href="{{ app.request.schemeAndHttpHost }}{{ path('register_validation', {'token': token}) }}">Lien de validation du compte SnowTricks</a></p>
+
+<p>A bientot sur notre site.</p>
+
+<p>L'équipe SnowTricks.</p>

@@ -47,10 +47,10 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('message', 'Votre compte a bien été enregistré, un mail de confirmation a été envoyé sur votre addresse mail, veuillez cliquer sur le lien proposé.');
+            $request->getSession()->getFlashBag()->add('message', 'Votre compte a bien été enregistré, un mail de confirmation a été envoyé sur votre adresse mail, veuillez cliquer sur le lien proposé.');
 
             $message = (new \Swift_Message('Confirmation d\'inscription sur le site SnowTricks'))
-              ->setFrom('doumalihassan4@yahoo.fr')
+              ->setFrom('noreply@snowtricks-hassandoumali.com')
               ->setTo($user->getEmail())
               ->setBody(
                   $this->renderView('STUserBundle:Security:registerValidation.html.twig', array(
@@ -110,7 +110,7 @@ class SecurityController extends Controller
                   $request->getSession()->getFlashBag()->add('message', 'Un mail de validation a été envoyé sur adresse email, veuillez cliquer sur le lien proposé afin de pouvoir modifier votre ancien mot de passe.');
 
                   $message = (new \Swift_Message('Modification du mot de passe sur le site SnowTricks'))
-                    ->setFrom('doumalihassan4@yahoo.fr')
+                    ->setFrom('noreply@snowtricks-hassandoumali.com')
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('STUserBundle:Security:forgotPasswordValidation.html.twig', array(
